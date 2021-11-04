@@ -1,0 +1,18 @@
+server:
+  port: 8091
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/daiqiwu?useUnicode=true&characterEncoding=utf-8&useOldAliasMetadataBehavior=true
+    username: root
+    password:
+  jackson:
+    date-format: yyyy-MM-dd hh:mm
+  mvc:
+    async:
+      request-timeout: 80000
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  config-location: classpath:mybatis-config.xml
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.daiqiwu2.model.mapper.PtMapper">
+    <resultMap id="allssPt" type="cn.gson.daiqiwu2.model.pojos.ptMan">
+
+        <id column="pt_id" property="ptId"></id>
+        <result  column="pt_name" property="ptName"></result>
+        <result  column="pt_age" property="ptAge"></result>
+        <result  column="pt_number" property="ptNumber"></result>
+        <result  column="pt_phone" property="ptPhone"></result>
+        <result  column="pt_dz" property="ptDz"></result>
+        <result  column="pt_time" property="ptTime"></result>
+        <result  column="pt_zd" property="ptZd"></result>
+        <result  column="pt_no" property="ptNo"></result>
+        <result  column="pt_gc" property="ptGc"></result>
+        <result  column="pt_csr" property="ptCsr"></result>
+        <result  column="pt_tbr" property="ptTbr"></result>
+        <result  column="gx_id" property="gxId"></result>
+        <result  column="pt_sex" property="ptSex"></result>
+        <result  column="pt_gz" property="ptGz"></result>
+        <association property="gx" javaType="cn.gson.daiqiwu2.model.pojos.gxMan">
+            <id column="gx_id" property="gxId"></id>
+            <result column="gx_name" jdbcType="VARCHAR" property="gxName" />
+        </association>
+    </resultMap>
+
+    <select id="selectpt" resultMap="allssPt">
+        select * from pt_man a inner join gxMan b
+        <where>
+            a.gx_id=b.gx_id
+            <if test ="seach !=null and '' != seach"> /*名称like*/
+                and a.pt_name like'%${ptName}%'
+            </if>
+        </where>
+    </select>
+</mapper>
